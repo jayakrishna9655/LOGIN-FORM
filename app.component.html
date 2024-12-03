@@ -1,0 +1,36 @@
+<form [formGroup]="form" (ngSubmit)="form_submit()">
+
+  <div class="form_group">
+    <label for="username">Username</label>
+    <input type="text" formControlName="username">
+  </div>
+
+  <div class="errors" *ngIf="(form.get('username')?.touched || form.get('username')?.dirty) && (form?.invalid)">
+    <p *ngIf="form.get('username')?.errors?.['required']">Please fill in your username</p>
+    <p *ngIf="form.get('username')?.errors?.['minlength']">Please fill minimum of your username</p>
+  </div>
+
+  <div class="form_group">
+    <label for="email">Email</label>
+    <input type="email" formControlName="email">
+  </div>
+
+  <div class="errors" *ngIf="form.get('email')?.touched || form.get('email')?.dirty">
+    <p *ngIf="form?.get('email')?.errors?.['required']">Please fill in your email</p>
+    <p *ngIf="form?.get('email')?.errors?.['email']">Please check the Email</p>
+  </div>
+
+  <div class="form_group">
+    <label for="password">Password</label>
+    <input type="password" formControlName="password">
+  </div>
+
+  <div class="errors" *ngIf="form.get('password')?.touched || form.get('password')?.dirty">
+    <p *ngIf="form.get('password')?.invalid">Please fill in your password</p>
+  </div>
+
+  <div class="form_group">
+    <button type="submit" [disabled]="form.invalid">Submit Query</button>
+  </div>
+
+</form>
